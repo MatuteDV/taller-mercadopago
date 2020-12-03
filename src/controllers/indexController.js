@@ -29,9 +29,9 @@ module.exports = {
             auto_return: 'approved',
             back_urls: {
                 // success: req.address...?,
-                success: url + '=success',
-                pending: url + '=pending',
-                failure: url + '=failure'
+                success: url + 'success',
+                pending: url + 'pending',
+                failure: url + 'failure'
             },
             notification_url: host + 'notifications',
             payment_methods: {
