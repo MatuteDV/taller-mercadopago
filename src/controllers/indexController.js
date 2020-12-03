@@ -13,7 +13,7 @@ module.exports = {
         return res.render("detail", { ...req.query });
     },
     buy: (req, res) => {
-        const host = 'https://mercadopagomv.herokuapp.com';
+        const host = 'https://mercadopagomv.herokuapp.com/';
         const url = host + 'callback?status=';
 
         let item = {
