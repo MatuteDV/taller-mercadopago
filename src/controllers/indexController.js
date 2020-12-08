@@ -24,7 +24,7 @@ module.exports = {
             unit_price: Number(999),
             quantity: 1
         };
-
+        console.log(req.hostname);
         let preference = {
             auto_return: 'approved',
             back_urls: {
@@ -79,17 +79,6 @@ module.exports = {
         // Guardar en DB toda la query para luego consultar. 
         // EJ: en los cobros de estado pendiente, recibiremos a futuro la notificación en caso de pagado y deberemos marcarlo como pagado.
 
-        // switch (req.query.status) {
-        //     case 'success':
-        //         return res.render('success')
-        //     case 'failure':
-        //         return res.render('failure')
-        //     case 'pending':
-        //         return res.render('pending')
-        //     default:
-        //         break;
-        // }
-
         if (req.query.status.includes('success')) {
             return res.render('success')
         } else if (req.query.status.includes('pending')) {
@@ -101,7 +90,7 @@ module.exports = {
         return res.status(404).end();
     },
     notifications: (req, res) => {
-        console.log(req.body);
+        console.log('webhook', req.body);
 
         return res.status(200).end('ok');
     }
