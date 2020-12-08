@@ -18,17 +18,15 @@ module.exports = {
 
         let item = {
             id: '1234',
-            picture_url: 'https://mercadopagomv.herokuapp.com/images/products/jordan.jpg',
-            title: 'Nombre del producto',
+            picture_url: host + 'images/products/jordan.jpg',
+            title: req.body.name,
             description: 'Dispositivo móvil de Tienda e-commerce',
-            unit_price: Number(999),
+            unit_price: Number(req.body.price),
             quantity: 1
         };
-        console.log(req.hostname);
         let preference = {
             auto_return: 'approved',
             back_urls: {
-                // success: req.address...?,
                 success: url + 'success',
                 pending: url + 'pending',
                 failure: url + 'failure'
@@ -36,31 +34,31 @@ module.exports = {
             notification_url: host + 'notifications',
             payment_methods: {
                 excluded_payment_methods: [
-                    {id: 'visa'}
+                    {id: 'amex'}
                 ],
                 excluded_payment_types: [
                     {id: 'amt'}
                 ],
-                installments: 12
+                installments: 6
             },
             items: [
               item
             ],
             payer: {
-                name: 'Ryan',
-                surname: 'Dahl',
+                name: 'Lalo',
+                surname: 'Landa',
                 email: 'test_user_63274575@testuser.com',
                 phone: {
-                    area_code: '011',
-                    number: 55556666
+                    area_code: '11',
+                    number: 22223333
                 },
                 address: {
-                    zip_code: '1234',
-                    street_name: 'monroe',
-                    street_number: 860
+                    zip_code: '1111',
+                    street_name: 'False',
+                    street_number: 123
                 }
             },
-            // external_references: 'string(256)'
+            external_reference: 'matiasvieira0@gmail.com'
         };
 
         mercadopago.preferences.create(preference)
@@ -80,7 +78,12 @@ module.exports = {
         // EJ: en los cobros de estado pendiente, recibiremos a futuro la notificación en caso de pagado y deberemos marcarlo como pagado.
 
         if (req.query.status.includes('success')) {
-            return res.render('success')
+            return res.render('success',{
+                payment_type: req.query.payment_type,   // ver esto
+                external_reference: req.query.external_reference,
+                payment_id: req.query.payment_id,
+                collection_id: req.query.collection_id
+            });
         } else if (req.query.status.includes('pending')) {
             return res.render('pending')
         } else if (req.query.status.includes('failure')) {

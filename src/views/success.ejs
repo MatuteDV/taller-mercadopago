@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>cobro exitoso</h1>
+    <h1>Cobro exitoso</h1>
+    <h3>payment_type / payment_method_id:</h3>
+    <p> <%= locals && locals.payment_type %> </p>
+    <h3>external_reference:</h3>
+    <p> <%= locals && locals.external_reference %> </p>
+    <h3>payment_id:</h3>
+    <p> <%= locals && locals.payment_id %> </p>
+    <h3>collection_id:</h3>
+    <p> <%= locals && locals.collection_id %> </p>
 </body>
 </html>
