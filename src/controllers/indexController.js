@@ -37,7 +37,7 @@ module.exports = {
                     {id: 'amex'}
                 ],
                 excluded_payment_types: [
-                    {id: 'amt'}
+                    {id: 'atm'}
                 ],
                 installments: 6
             },
